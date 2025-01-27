@@ -8,6 +8,7 @@ import {
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+import { Branch } from 'src/resources/branch/entities/branch.entity';
 
 @Entity()
 export class User {
@@ -21,6 +22,9 @@ export class User {
     cascade: true,
   })
   authentications: Authentication[];
+
+  @OneToOne(() => Branch, (branch) => branch.createdBy)
+  branch: Branch;
 
   @Column()
   password: string;

@@ -1,8 +1,10 @@
+import { Branch } from 'src/resources/branch/entities/branch.entity';
 import { User } from 'src/resources/user/entities/user.entity';
 import {
   Column,
   Entity,
   JoinColumn,
+  OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
@@ -15,6 +17,9 @@ export class Person {
   @OneToOne(() => User, (user) => user.person, { cascade: true })
   @JoinColumn()
   user: User;
+
+  @OneToMany(() => Branch, (branch) => branch.representative)
+  branches: Branch[];
 
   @Column({ nullable: true })
   name: string;
