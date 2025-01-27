@@ -1,7 +1,7 @@
 import { PartialType } from '@nestjs/mapped-types';
 import { CreateUserDto } from './create-user.dto';
-import { Role } from 'src/enums/Role';
+import { RolesEnum } from 'src/enums/RolesEnum';
 
 export class UpdateUserDto extends PartialType(CreateUserDto) {
-  roles?: Role[];
+  roles?: RolesEnum[];
 }
