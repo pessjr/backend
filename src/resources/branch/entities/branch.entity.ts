@@ -7,6 +7,7 @@ import {
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+import { CreateBranchDto } from '../dto/create-branch.dto';
 
 @Entity()
 export class Branch {
@@ -27,4 +28,20 @@ export class Branch {
 
   @ManyToOne(() => Person, (person) => person.branches, { nullable: false })
   representative: Person;
+
+  static fromCreateDto(createBranchDto: CreateBranchDto) {
+    const createdBy = new User();
+    createdBy.id = createBranchDto.createdBy;
+
+    const representative = new Person();
+    representative.id = createBranchDto.representative;
+
+    return {
+      fantasyName: createBranchDto.fantasyName,
+      companyName: createBranchDto.companyName,
+      cnpj: createBranchDto.cnpj,
+      createdBy,
+      representative,
+    } as unknown as Branch;
+  }
 }

@@ -7,6 +7,7 @@ import {
   Param,
   Delete,
   Query,
+  BadRequestException,
 } from '@nestjs/common';
 import { BranchService } from './branch.service';
 import { CreateBranchDto } from './dto/create-branch.dto';
@@ -23,6 +24,7 @@ export class BranchController {
 
   @Get()
   findAll(@Query() clientId: number) {
+    if (!clientId) throw new BadRequestException();
     return this.branchService.findAll(clientId);
   }
 
