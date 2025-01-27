@@ -9,6 +9,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Branch } from 'src/resources/branch/entities/branch.entity';
+import { ServiceOrder } from 'src/resources/service-order/entities/service-order.entity';
 
 @Entity()
 export class User {
@@ -23,8 +24,11 @@ export class User {
   })
   authentications: Authentication[];
 
-  @OneToOne(() => Branch, (branch) => branch.createdBy)
-  branch: Branch;
+  @OneToMany(() => Branch, (branch) => branch.createdBy)
+  branch: Branch[];
+
+  @OneToMany(() => ServiceOrder, (serviceOrder) => serviceOrder.createdBy)
+  serviceOrder: ServiceOrder[];
 
   @Column()
   password: string;

@@ -10,6 +10,7 @@ import { RolesGuard } from './configurations/roles-guard/roles-guard.guard';
 import { ClientModule } from './resources/client/client.module';
 import { EquipmentModule } from './resources/equipment/equipment.module';
 import { BranchModule } from './resources/branch/branch.module';
+import { ServiceOrderModule } from './resources/service-order/service-order.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { BranchModule } from './resources/branch/branch.module';
     ClientModule,
     EquipmentModule,
     BranchModule,
+    ServiceOrderModule,
   ],
   controllers: [AppController],
   providers: [
